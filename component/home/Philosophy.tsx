@@ -5,7 +5,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import philosphy from '@/assets/philosphy.png'
+import philosphy from '@/assets/philosphy.jpg'
 
 import backImageOne from '@/assets/one.png'
 import backImageTwo from '@/assets/two.png'
