@@ -1,164 +1,4 @@
-// "use client";
 
-// import { motion } from "motion/react";
-// import Image from "next/image";
-// import starone from '@/assets/start-one.png';
-// import { RippleWave } from "./ripple-wave";
-// import { useRef } from "react";
-
-// export default function HeroSection() {
-//   const sectionRef = useRef<HTMLDivElement>(null);
-//   return (
-//     <section className="relative">
-//       {/* <RippleWave maxRipples={6} parentRef={sectionRef}> */}
-//       {/* <div className="max-w-[1440px] mx-auto  flex flex-col justify-center items-center text-center relative overflow-hidden"> */}
-//       {/* Corner brackets - top left */}
-//       <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#333d42]/40" />
-//       {/* Corner brackets - top right */}
-//       <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-[#333d42]/40" />
-//       {/* Corner brackets - bottom left */}
-//       <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-[#333d42]/40" />
-//       {/* Corner brackets - bottom right */}
-//       <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#333d42]/40" />
-//       <div className="max-w-[1440px] min-h-screen mx-auto  flex flex-col justify-center items-center text-center relative overflow-hidden gap-4">
-
-
-//         {/* Star 1 - top left */}
-//         <motion.div
-//           initial={{ opacity: 0, scale: 0, rotate: -45 }}
-//           animate={{ opacity: 1, scale: 1, rotate: 0 }}
-//           transition={{ duration: 0.8, delay: 1.0, ease: "backOut" }}
-//           className="absolute top-[25%] left-[15%]"
-//         >
-//           <motion.div
-//             animate={{ rotate: 360, y: [0, -6, 0] }}
-//             transition={{
-//               rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-//               y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
-//             }}
-//           >
-//             <Image
-//               src={starone}
-//               alt="star"
-//               // Apply the size directly here or via className
-//               className="w-[30px] md:w-[60px] lg:w-[110px] h-auto object-contain"
-//               width={110}
-//               height={110}
-//             />
-//           </motion.div>
-//         </motion.div>
-
-//         {/* Star 2 - bottom right */}
-//         <motion.div
-//           initial={{ opacity: 0, scale: 0, rotate: 45 }}
-//           animate={{ opacity: 1, scale: 1, rotate: 0 }}
-//           transition={{ duration: 0.8, delay: 1.2, ease: "backOut" }}
-//           className="absolute bottom-[20%] right-[15%] "
-//         >
-//           <motion.div
-//             animate={{ rotate: -360, y: [0, 6, 0] }}
-//             transition={{
-//               rotate: { duration: 25, repeat: Infinity, ease: "linear" },
-//               y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 },
-//             }}
-//             className="relative w-full h-full"
-//           >
-//             <Image
-//               src={starone}
-//               alt="star"
-
-//               // sizes="(max-width: 768px) 30px, (max-width: 1024px) 45px, 60px"
-//               className="w-[30px] md:w-[60px] lg:w-[110px] h-auto object-contain"
-//               width={110}
-//               height={110}
-//             />
-//           </motion.div>
-//         </motion.div>
-
-//         {/* H1 - Stories */}
-//         <motion.h1
-//           initial={{ opacity: 0, y: 60, filter: "blur(12px)" }}
-//           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-//           transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-//           className="font-playfair-sc font-normal text-[clamp(48px,9.375vw,120px)] leading-none tracking-[1px] text-[#b2947a] m-0"
-//         >
-//           Stories
-//         </motion.h1>
-
-//         {/* H2 - Shape Culture */}
-//         <motion.h2
-//           initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
-//           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-//           transition={{ duration: 0.9, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
-//           className="font-playfair-sc font-normal text-[clamp(28px,4.765vw,61px)] leading-none tracking-[0.7px] text-[#333d42] mt-2"
-//         >
-//           Shape Culture
-//         </motion.h2>
-
-//         {/* Paragraph */}
-//         <motion.p
-//           initial={{ opacity: 0, y: 60, filter: "blur(8px)" }}
-//           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-//           transition={{ duration: 0.9, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-//           className="font-poppins font-normal text-[clamp(13px,1.5625vw,20px)] leading-relaxed tracking-[0.7px] text-[#595C5F] mt-5 px-6 max-w-5xl"
-//         >
-//           PincMoon Meta Studios develops and produces films, series, and creative platforms that reflect the complexity, energy, and imagination of modern India.
-
-//         </motion.p>
-
-//         {/* CTA Buttons */}
-//         <motion.div
-//           initial={{ opacity: 0, y: 30 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.8, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
-//           className="flex items-center gap-4 mt-10 flex-wrap justify-center px-6"
-//         >
-//           {/* Primary Button */}
-//           <button className="font-poppins font-medium text-[clamp(11px,1.1vw,14px)] tracking-[2px] uppercase text-white bg-[#a08b82]/70 hover:bg-[#a08b82]/90 px-8 py-4 rounded-full backdrop-blur-sm transition-all duration-300 cursor-pointer border-none">
-//             Explore Our Work
-//           </button>
-
-//           {/* Secondary Button */}
-//           <button className="font-poppins font-medium text-[clamp(11px,1.1vw,14px)] tracking-[2px] uppercase text-[#333d42] bg-transparent hover:bg-white/20 px-8 py-4 rounded-full border border-[#333d42]/40 backdrop-blur-sm transition-all duration-300 cursor-pointer">
-//             Our Approach
-//           </button>
-//         </motion.div>
-
-//         {/* Dot Navigation */}
-//         <motion.div
-//           initial={{ opacity: 0 }}
-//           animate={{ opacity: 1 }}
-//           transition={{ duration: 0.6, delay: 1.4 }}
-//           className="absolute bottom-8 flex flex-col items-center gap-2"
-//         >
-//           {/* Numbers */}
-//           <div className="flex items-center gap-4 font-poppins text-[clamp(9px,0.9vw,11px)] tracking-[2px] text-[#333d42]/50">
-//             {[-3, -2, -1, 0, 1, 2, 3].map((n) => (
-//               <span key={n} className={n === 0 ? "text-[#333d42] font-medium" : ""}>
-//                 {Math.abs(n)}
-//               </span>
-//             ))}
-//           </div>
-//           {/* Dots */}
-//           <div className="flex items-center gap-4">
-//             {[-3, -2, -1, 0, 1, 2, 3].map((n) => (
-//               <div
-//                 key={n}
-//                 className={`rounded-full transition-all ${n === 0
-//                   ? "w-[6px] h-[6px] bg-[#333d42]"
-//                   : "w-[4px] h-[4px] bg-[#333d42]/30"
-//                   }`}
-//               />
-//             ))}
-//           </div>
-//         </motion.div>
-
-//       </div>
-//       {/* </div> */}
-//       {/* </RippleWave> */}
-//     </section>
-//   );
-// }
 
 "use client";
 
@@ -169,6 +9,14 @@ import { useRef } from "react";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+
+  }
 
   return (
     <section className="relative">
@@ -281,7 +129,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
           className="flex items-center gap-4 mt-10 flex-wrap justify-center px-6"
         >
-          <button className="font-poppins font-semibold text-[clamp(14px,1.1vw,16px)] tracking-[2px] uppercase text-[#F8F7F2]  hover:bg-[#a08b82]/90 px-8 py-4 rounded-full backdrop-blur-sm transition-all duration-300 cursor-pointer border-none"
+          <button onClick={() => scrollToSection('projects')} className="font-poppins font-semibold text-[clamp(14px,1.1vw,16px)] tracking-[2px] uppercase text-[#F8F7F2]  hover:bg-[#a08b82]/90 px-8 py-4 rounded-full backdrop-blur-sm transition-all duration-300 cursor-pointer border-none"
             style={{
               background: "linear-gradient(145deg, #BDAFC6 6.17%, #BDABC0 15.91%, #BDA8BB 25.65%, #BDA4B5 35.39%, #BCA1AF 45.13%, #BA9EA9 54.87%, #B89BA4 64.61%, #B6989E 74.35%, #B39698 84.09%, #B09393 93.83%)",
               opacity: 0.85,
