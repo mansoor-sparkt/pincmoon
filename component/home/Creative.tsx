@@ -142,24 +142,34 @@
 
 "use client";
 
+// import {
+//   motion,
+//   useScroll,
+//   useTransform,
+//   useSpring,
+//   MotionValue,
+//   cubicBezier,
+//   MotionStyle,
+// } from "framer-motion";
 import {
   motion,
   useScroll,
   useTransform,
   useSpring,
   MotionValue,
-  cubicBezier,
+  // cubicBezier,
   MotionStyle,
-} from "framer-motion";
+} from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
 import leftCurve from "@/assets/left-curves.png";
+import { CSSProperties } from "react";
 
 const easeArray = [0.22, 1, 0.36, 1] as const;
-const smoothEase = cubicBezier(...easeArray);
+// const smoothEase = cubicBezier(...easeArray);
 
 const fadeLeft = (delay = 0) => ({
-  initial: { opacity: 0, x: -40, filter: "blur(8px)" },
+  initial: { opacity: 0, x: -40, },
   whileInView: { opacity: 1, x: 0, filter: "blur(0px)" },
   viewport: { once: true, margin: "-80px" } as const,
   transition: { duration: 0.9, delay, ease: easeArray },
@@ -216,7 +226,7 @@ function ServiceCard({
     progress,
     [start, land],
     ["110vh", `${landedY}px`],
-    { ease: smoothEase }
+    // { ease: smoothEase }
   );
 
   const opacity = useTransform(
@@ -239,6 +249,7 @@ function ServiceCard({
         top: 0,
         left: 0,
         right: 0,
+        willChange: "transform, opacity"
       } as MotionStyle}
     >
       <div className="rounded-[20px] p-[1px] bg-gradient-to-br from-white/80 to-[#90A1B9]/80 ">
@@ -273,9 +284,9 @@ const Creative = () => {
   // Tight spring = card responds almost immediately to scroll
   // This is what makes it feel like YOU are pulling the card up
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
+    stiffness: 70,
     damping: 30,
-    restDelta: 0.001,
+    restDelta: 0.01,
   });
 
   const totalExtraScroll = services.length * SCROLL_PER_CARD;
@@ -291,11 +302,11 @@ const Creative = () => {
       style={{ height: `calc(100vh + ${totalExtraScroll}vh)` }}
     >
       {/* Sticky viewport — always 100vh, pinned to top */}
-      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden px-6 md:px-12 lg:px-20">
+      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden px-6 md:px-12 lg:px-20 relative">
 
         {/* Background Decorative */}
         <div className="absolute bottom-0 left-0 w-[55%] h-[75%] pointer-events-none">
-          <Image src={leftCurve} alt="" fill className="object-contain object-left-bottom opacity-50" />
+          <Image src={leftCurve} sizes="55vw" alt="" fill className="object-contain object-left-bottom opacity-50" />
         </div>
 
         <div className="relative z-10 max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
@@ -306,7 +317,12 @@ const Creative = () => {
               What We Create
             </motion.p>
             <motion.h2 {...fadeLeft(0.2)} className="font-playfair-sc font-normal text-[clamp(36px,5vw,72px)] leading-[1.05] text-[#353535]">
-              Ideas in the<br />form<br />
+              Ideas in the {" "}
+              <br className="hidden md:inline-block" />
+              <span>form</span>
+
+              {" "}
+              <br className="hidden md:inline-block" />
               <span className="italic text-[#B09393]">they need</span>
             </motion.h2>
             <motion.p {...fadeLeft(0.35)} className="font-poppins font-light text-[clamp(16px,1.2vw,20px)] leading-[2] text-[#353535B2]/70 max-w-[380px]">

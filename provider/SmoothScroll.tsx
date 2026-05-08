@@ -1,14 +1,33 @@
 "use client";
-import { ReactLenis } from 'lenis/react';
+import { useEffect } from "react";
+import Lenis from "lenis";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
-  return (
-    <ReactLenis root options={{
-      lerp: 0.1,
+  useEffect(() => {
+    const lenis = new Lenis({
       duration: 1.2,
-      smoothWheel: true
-    }}>
-      {children}
-    </ReactLenis>
-  );
+      // easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      lerp: 0.1,
+      // This prevents Lenis from stopping events that the Header needs
+      touchMultiplier: 2,
+    });
+
+    lenis.scrollTo(window.scrollY, { immediate: true });
+
+    // Handle internal Lenis scroll events to keep window.scrollY in sync
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    const rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
+
+  return <>{children}</>;
 }

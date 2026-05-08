@@ -104,9 +104,49 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // useEffect(() => {
+
+  //   const timer = setTimeout(() => {
+  //     setScrolled(window.scrollY > 10);
+  //   }, 50);
+
+  //   const handleScroll = () => setScrolled(window.scrollY > 10);
+  //   window.addEventListener("scroll", handleScroll, { passive: true });
+  //   return () => {
+  //     clearTimeout(timer);
+  //     window.removeEventListener("scroll", handleScroll);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     // Use a small threshold. If Lenis is active, window.scrollY
+  //     // is still updated, but we wrap it in requestAnimationFrame
+  //     // for maximum performance.
+  //     requestAnimationFrame(() => {
+  //       const isScrolled = window.scrollY > 10;
+  //       setScrolled(isScrolled);
+  //     });
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll, { passive: true });
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
+
+
+  // Inside Navbar component in Header.tsx
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
+    // 1. Define the logic
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    // 2. Run it immediately (fixes the refresh problem)
+    handleScroll();
+
+    // 3. Listen for future scrolls
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -133,7 +173,7 @@ export default function Navbar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 w-full flex justify-between items-center px-6 md:px-8 py-0 h-[72px] uppercase text-xs tracking-[2px] z-[90] transition-[background-color,backdrop-filter] duration-700 ease-in-out ${scrolled || menuOpen
+        className={`fixed top-0 w-full overflow-hidden flex justify-between items-center px-6 md:px-8 py-0  h-[72px] uppercase text-xs tracking-[2px] z-[90] transition-[background-color,backdrop-filter] duration-700 ease-in-out ${scrolled || menuOpen
           ? "backdrop-blur-md bg-white/70 border-b border-white/20"
           : "bg-transparent backdrop-blur-none"
           }`}
@@ -209,7 +249,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.35, ease: "easeInOut" }}
-            className={`fixed top-[72px] left-0 right-0 z-[88] transition-[background-color,backdrop-filter] duration-700 ease-in-out ${scrolled || menuOpen ? "bg-white/70 backdrop-blur-xl" : "bg-transparent backdrop-blur-none"} border-b border-white/30 flex flex-col items-center py-6 gap-0 md:hidden`}
+            className={`fixed top-[72px] overflow-x-hidden left-0 right-0 z-[88] transition-[background-color,backdrop-filter] duration-700 ease-in-out ${scrolled || menuOpen ? "bg-white/70 backdrop-blur-xl" : "bg-transparent backdrop-blur-none"} border-b border-white/30 flex flex-col items-center py-6 gap-0 md:hidden`}
           >
             {navItems.map((item, i) => (
               <motion.span

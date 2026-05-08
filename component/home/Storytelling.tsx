@@ -57,7 +57,8 @@ const Storytelling = () => {
           >
             Built for{" "}
             <span className="italic text-[#B09393]">this</span>
-            <br />
+            <br className="hidden md:inline-block" />
+            {" "}
             <span className="italic text-[#B09393]">moment</span>
           </motion.h2>
 
@@ -89,10 +90,10 @@ const Storytelling = () => {
         </div>
 
         {/* ── RIGHT COLUMN ─────────────────────────────────────────── */}
-        <div className=" grid grid-rows-3 gap-4 md:items-start  py-4 ">
+        <div className=" grid grid-rows-3 gap-4 md:items-start overflow-hidden  py-4 ">
 
           {/* ── RIGHT COLUMN: stacked Global Reach + Emotional Truth ── */}
-          <div className="grid grid-rows-2 md:grid-rows-1 row-span-2 grid-cols-1 md:grid-cols-2  gap-4 h-full pb-4 ">
+          <div className="grid grid-rows-2 md:grid-rows-1 row-span-2 grid-cols-1 md:grid-cols-2  gap-4 h-full md:pb-4 ">
 
             {/* Global Reach — plain white card */}
             {/* <motion.div
