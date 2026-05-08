@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  --text-gold: #b2947a;
+  --text-dark: #333d42;
+  --footer-bg: #e6dfdd;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Define custom utility names */
+  --font-playfair-sc: var(--font-playfair);
+  --font-poppins: var(--font-poppins);
+}
+
+/* Force the sticky container to respect the viewport even with Lenis */
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  /* This prevents Lenis transforms from breaking the sticky context */
+  will-change: transform;
+  z-index: 50;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+
+  /* for all content */
+  font-family: var(--font-poppins), sans-serif;
+}
+
+main {
+  overflow: visible !important;
+}
